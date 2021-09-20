@@ -25,6 +25,14 @@ def create_bucket_with_region(bucket_name, region):
         logging.error(e)
         print('oops! something is wrong, maybe your internet connection?')  
 
+# Display existing buckets
+def display_existing_buckets():
+    x = 0
+    s3 = boto3.resource('s3')
+    for bucket in s3.buckets.all():
+        x += 1
+        print(f'{x}. {bucket.name}')
+
 while True:
     prompt = input('Do you wish to create an S3 bucket? Y or N?\n')
     if prompt.upper() == 'Y':
@@ -37,8 +45,10 @@ while True:
             user_input = input('Specify bucket name (Name must be unique!):\n')
             createBucket(user_input)
     elif prompt.upper() == 'N':
+        display_existing_buckets()
         print('Alright goodbye...')
     break
+
 
 
               
