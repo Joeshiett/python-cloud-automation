@@ -32,9 +32,18 @@ def display_resources_in_bucket():
         print(file.key)
 
 def delete_content_bucket():
-    
-
+    try:
+        bucket_name = input('Enter bucket name:\n')
+        file_name = input('Enter file name you wish to delete:')
+        client = boto3.client('s3')
+        client.delete_object(Bucket=bucket_name, Key=file_name)
+        print(f'{file_name} deleted!')
+    except ClientError as e:
+        logging.error(e)
+        return False
+        
 # Deletes empty bucket only
 # delete_s3_bucket('joeshiett-bucket3')
 # display_available_buckets()
-# display_resources_in_bucket()
+display_resources_in_bucket()
+delete_content_bucket()
