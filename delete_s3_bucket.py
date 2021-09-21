@@ -31,6 +31,7 @@ def display_resources_in_bucket():
     for file in my_bucket.objects.all():
         print(file.key)
 
+# Deletes content inside of bucket
 def delete_content_bucket():
     try:
         bucket_name = input('Enter bucket name:\n')
@@ -41,9 +42,8 @@ def delete_content_bucket():
     except ClientError as e:
         logging.error(e)
         return False
-        
-# Deletes empty bucket only
+
 # delete_s3_bucket('joeshiett-bucket3')
 # display_available_buckets()
-display_resources_in_bucket()
-delete_content_bucket()
+# display_resources_in_bucket()
+# delete_content_bucket()
